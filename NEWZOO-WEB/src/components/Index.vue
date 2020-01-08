@@ -1,25 +1,14 @@
 <template>
   <div>
-    <el-form ref="form" :model="form" label-width="80px">
-
-      <el-form-item label="用户名">
-        <el-input v-model="form.username"></el-input>
-      </el-form-item>
-
-      <el-form-item label="密码" inline="true" :disable="true">
-        <el-input v-model="form.password"></el-input>
-      </el-form-item>
-
-      <el-form-item label="确认密码" inline="true" :disable="true">
-        <el-input v-model="form.confirm"></el-input>
-      </el-form-item>
-
-      <el-form-item>
-        <el-button type="primary" @click="login">去登陸</el-button>
-        <el-button type="primary" @click="register">注册</el-button>
-      </el-form-item>
-
-    </el-form>
+    <ul id="example-1">
+      <li v-for="item in records">
+        {{ item.title }} <br>
+        {{ item.content }} <br>
+        {{ item.createDate }} <br>
+        {{ item.updateDate }} <br>
+        {{ item.message }} <br>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -28,34 +17,27 @@
     name: 'Login',
     data() {
       return {
-        form: {
-          username: '',
-          password: '',
-          confirm: '',
-        }
+        current: 1,
+        count: 10,
+        records: []
       }
     },
-    methods: {
-      login(){
-        this.$router.push({path: "/"});
-      },
-      register() {
-        this.$axios({
-          method: "post",
-          url: "http://localhost:10005/user/register", // 接口地址
-          data: {
-            account: this.form.username,
-            password: this.form.password,
-            confirm: this.form.confirm,
-          }
-        }).then(response => {
-          let data = response.data;
-            console.log(response.data);   // 成功的返回
-          if (data.code = 300) {
-            alert(data.msg);
-          }
-          }).catch(error => console.log(error)); // 失败的返回
-      }
+    created() {
+      this.$axios({
+        method: "post",
+        url: "http://localhost:10005/post/contents", // 接口地址
+        data: {
+          current: this.current,
+          count: this.count,
+          userId: 1
+        }
+      }).then(response => {
+        let data = response.data;
+        console.log(response.data);   // 成功的返回
+        if (data.code = 300) {
+          this.records = data.object.records;
+        }
+      }).catch(error => console.log(error)); // 失败的返回
     }
   }
 </script>
