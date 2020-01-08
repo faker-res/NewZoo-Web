@@ -7,9 +7,11 @@ import Router from 'vue-router';
 import store from './store';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css'
+import axios from 'axios';
 //注册插件
 Vue.use(Router);
-Vue.use(ElementUI)
+Vue.use(ElementUI);
+Vue.prototype.$axios = axios
 
 
 Vue.config.productionTip = false
@@ -19,6 +21,7 @@ new Vue({
   el: '#app',
   store,
   router,
-  components: { App },
-  template: '<App/>'
-})
+  components: {App},
+  template: '<App/>',
+  axios
+});

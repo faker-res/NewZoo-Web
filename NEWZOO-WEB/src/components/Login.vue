@@ -2,7 +2,7 @@
   <div>
     <el-form ref="form" :model="form" label-width="80px">
 
-      <el-form-item label="用户名" >
+      <el-form-item label="用户名">
         <el-input v-model="form.username"></el-input>
       </el-form-item>
 
@@ -25,7 +25,7 @@
 
 <script>
   export default {
-    name: 'HelloWorld',
+    name: 'Login',
     data() {
       return {
         form: {
@@ -36,11 +36,25 @@
       }
     },
     methods: {
-      login(){
-        alert("登录");
+      login() {
+        this.$axios({
+          method: "post",
+          url: "http://localhost:10005/user/login", // 接口地址
+          data: {
+            account: this.form.username,
+            password: this.form.password
+          }
+        }).then(response => {
+          let data = response.data;
+            console.log(response.data);   // 成功的返回
+          if (data.code = 300) {
+            alert(data.msg);
+
+          }
+          }).catch(error => console.log(error)); // 失败的返回
       },
-      register(){
-        alert("注册");
+      register() {
+        this.$router.push({path: "/register"});
       }
     }
   }
@@ -52,6 +66,6 @@
     margin: auto;
     height: 100px;
     width: 400px;
-    
+
   }
 </style>
