@@ -25,7 +25,7 @@
     created() {
       this.$axios({
         method: "post",
-        url: "http://localhost:10005/post/contents", // 接口地址
+        url: "http://10.10.100.129:10005/post/contents", // 接口地址
         data: {
           current: this.current,
           count: this.count,

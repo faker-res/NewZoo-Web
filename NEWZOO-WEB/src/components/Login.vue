@@ -39,7 +39,7 @@
       login() {
         this.$axios({
           method: "post",
-          url: "http://localhost:10005/user/login", // 接口地址
+          url: "http://10.10.100.129:10005/user/login", // 接口地址
           data: {
             account: this.form.username,
             password: this.form.password
