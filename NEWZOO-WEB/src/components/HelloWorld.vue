@@ -2,7 +2,7 @@
   <div>
     <el-form ref="form" :model="form" label-width="80px">
 
-      <el-form-item label="用户名" label-width="100px">
+      <el-form-item label="用户名" >
         <el-input v-model="form.username"></el-input>
       </el-form-item>
 
@@ -46,12 +46,12 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
-  el-form {
+  .el-form {
     margin: auto;
     height: 100px;
-    width: 100px;
+    width: 400px;
+    
   }
-
 </style>
