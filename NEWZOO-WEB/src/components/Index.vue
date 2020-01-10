@@ -23,21 +23,31 @@
       }
     },
     created() {
-      this.$axios({
-        method: "post",
-        url: "http://10.10.100.129:10005/post/contents", // 接口地址
-        data: {
+      // this.$axios({
+      //   method: "post",
+      //   url: "http://10.10.100.129:10005/post/contents", // 接口地址
+      //   data: {
+      //     current: this.current,
+      //     count: this.count,
+      //     userId: 1
+      //   }
+      // }).then(response => {
+      //   let data = response.data;
+      //   console.log(response.data);   // 成功的返回
+      //   if (data.code = 300) {
+      //     this.records = data.object.records;
+      //   }
+      // }).catch(error => console.log(error)); // 失败的返回
+      this.$post('post/contents',{
           current: this.current,
           count: this.count,
           userId: 1
-        }
-      }).then(response => {
-        let data = response.data;
-        console.log(response.data);   // 成功的返回
-        if (data.code = 300) {
-          this.records = data.object.records;
-        }
-      }).catch(error => console.log(error)); // 失败的返回
+         }).then(response =>{
+           let data = response.data;
+           if (data.code = 300) {
+           this.records = data.object.records;
+         }
+         })
     }
   }
 </script>

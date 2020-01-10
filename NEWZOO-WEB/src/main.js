@@ -6,12 +6,19 @@ import router from './router';
 import Router from 'vue-router';
 import store from './store';
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css'
-import axios from 'axios';
+import 'element-ui/lib/theme-chalk/index.css';
+import axios from 'axios'
+import {post,get,patch,put} from './util/api/http'
+//定义全局变量
+Vue.prototype.$post=post;
+Vue.prototype.$get=get;
+Vue.prototype.$patch=patch;
+Vue.prototype.$put=put;
+
 //注册插件
 Vue.use(Router);
 Vue.use(ElementUI);
-Vue.prototype.$axios = axios
+
 
 
 Vue.config.productionTip = false
