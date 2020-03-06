@@ -37,15 +37,27 @@
     },
     methods: {
       login() {
-        this.$axios({
-          method: "post",
-          url: "http://10.10.100.129:10005/user/login", // 接口地址
-          data: {
-            account: this.form.username,
-            password: this.form.password
-          }
-        }).then(response => {
-          let data = response.data;
+        // this.$axios({
+        //   method: "post",
+        //   url: "http://10.10.100.129:10005/user/login", // 接口地址
+        //   data: {
+        //     account: this.form.username,
+        //     password: this.form.password
+        //   }
+        // }).then(response => {
+        //   let data = response.data;
+        //     console.log("我的1",response.data);   // 成功的返回
+        //   if (data.code == 200) {
+        //     this.$router.push({path: "/index"});
+        //   }else {
+        //     alert("报错了");
+        //   }
+        //   }).catch(error => console.log(error)); // 失败的返回
+        this.$post('user/login',{
+          account: this.form.username,
+          password: this.form.password
+         }).then(response =>{
+           let data = response.data;
             console.log("我的1",response.data);   // 成功的返回
           if (data.code == 200) {
             this.$router.push({path: "/index"});
@@ -53,6 +65,7 @@
             alert("报错了");
           }
           }).catch(error => console.log(error)); // 失败的返回
+
       },
       register() {
         this.$router.push({path: "/register"});
